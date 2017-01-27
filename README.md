@@ -40,11 +40,3 @@ The two simple ways to access this site and order your own pizza are as follows.
       *Onions: $1.00
     * Price: $18.50
   *Total Price: $35.00**
-
-
-refactor html to fit custom pizzas only
-add option to buy multiple of the same pizza
-add option to add more custom pizzas
-add buttons which add prepopulated checkboxes for classic pizza toppings.
-
-change specs accordingly

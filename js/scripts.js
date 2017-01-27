@@ -1,13 +1,13 @@
 var toppingDict = {
   "cheese":1, "pepperoni":1, "pineapple":1, "sausage":1, "Canadian bacon":1.5, "artichoke":1, "onions":1, "green onions":1, "anchovies":1, "bacon":1.5, "chicken":1, "tomatoes":1, "sun-dried":1
 };
-var classicPizzaDict = {
-  "Classic Pepperoni":["cheese","pepperoni"],
-  "Classic Cheese":["cheese"],
-  "Classic Meatlovers":["cheese","pepperoni","sausage", "Canadian bacon", "chicken"],
-  "Classic Vegetarian": ["cheese","artichoke","onions","green onions"],
-  "Classic Hawaiian":["cheese", "Canadian bacon", "pineapple"]
-};
+// var classicPizzaDict = {
+//   "Classic Pepperoni":["cheese","pepperoni"],
+//   "Classic Cheese":["cheese"],
+//   "Classic Meatlovers":["cheese","pepperoni","sausage", "Canadian bacon", "chicken"],
+//   "Classic Vegetarian": ["cheese","artichoke","onions","green onions"],
+//   "Classic Hawaiian":["cheese", "Canadian bacon", "pineapple"]
+// };
 var sizeDict = {
   "small":12,
   "medium":16,
@@ -41,14 +41,14 @@ function addPizza(id){
       break;
 
   }
-  $("#pizzas").append(
+  $(".pizzas").append(
         '<div>'+
           '<label for="size">'+
             '<input type="radio" name="pizzaSize" value="small">'+
             'Small'+
           '</label>'+
           '<label for="size">'+
-            '<input type="radio" name="pizzaSize" value="medium">'+
+            '<input type="radio" name="pizzaSize" value="medium" checked>'+
             'Medium'+
           '</label>'+
           '<label for="size">'+
@@ -147,7 +147,7 @@ Pizza.prototype = {
 
 
 $(function(){
-  $(".btn").click(function(){
+  $("div.btn").click(function(){
     var thisID = $(this).attr("id")
     addPizza(thisID)
   })
@@ -155,24 +155,23 @@ $(function(){
   $("form#order").submit(function(event){
     event.preventDefault();
     var orderPrice = 0
-    $("#pizzas").each(function(){
+    $(".pizzas").each(function(){
       var size = $(this).children("div").children("label").children("input[type=radio]:checked").val();
       var newPizza = new Pizza(size)
+
+      console.log("should be class .pizzas:  " + $(this).attr("class"))
 
       $(this).children("div").children("label").children("input[type=checkbox]:checked").each(function(){
         // var ingredient = $(this).val();
         var topper = $(this).val();
+        console.log("should be a topping value:  " + $(this).val())
         var newTopping = new topping(topper);
         newPizza.toppings.push(newTopping);
       })
       console.log(newPizza);
-      orderPrice +=newPizza.calculatePrice();
+      orderPrice += newPizza.calculatePrice();
     })
 
-    //var pizzaName=$("input[name=pizza]:checked").val();
-
-
-    // newPizza.getToppings();
 
     $("#priceOutput").text("$"+orderPrice);
   })

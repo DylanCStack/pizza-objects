@@ -9,3 +9,8 @@ label {
 .customOptions {
   display:none;
 }
+
+.pizzas>div {
+  margin: 20px;
+  border: 2px solid grey;
+}
