@@ -1,13 +1,7 @@
 var toppingDict = {
   "cheese":1, "pepperoni":1, "pineapple":1, "sausage":1, "Canadian bacon":1.5, "artichoke":1, "onions":1, "green onions":1, "anchovies":1, "bacon":1.5, "chicken":1, "tomatoes":1, "sun-dried":1
 };
-// var classicPizzaDict = {
-//   "Classic Pepperoni":["cheese","pepperoni"],
-//   "Classic Cheese":["cheese"],
-//   "Classic Meatlovers":["cheese","pepperoni","sausage", "Canadian bacon", "chicken"],
-//   "Classic Vegetarian": ["cheese","artichoke","onions","green onions"],
-//   "Classic Hawaiian":["cheese", "Canadian bacon", "pineapple"]
-// };
+
 var sizeDict = {
   "small":12,
   "medium":16,
@@ -16,6 +10,7 @@ var sizeDict = {
 };
 function addPizza(id){
   var cheese, pepperoni, hawaiian, veggie, meat;
+  var radioNames = Math.random().toString();
   switch (id) {
     case "addCheese":
       cheese="checked"
@@ -42,21 +37,21 @@ function addPizza(id){
 
   }
   $(".pizzas").append(
-        '<div>'+
+        '<div class="pizza">'+
           '<label for="size">'+
-            '<input type="radio" name="pizzaSize" value="small">'+
+            '<input type="radio" name="'+radioNames+'" value="small">'+
             'Small'+
           '</label>'+
           '<label for="size">'+
-            '<input type="radio" name="pizzaSize" value="medium" checked>'+
+            '<input type="radio" name="'+radioNames+'" value="medium" checked>'+
             'Medium'+
           '</label>'+
           '<label for="size">'+
-            '<input type="radio" name="pizzaSize" value="large">'+
+            '<input type="radio" name="'+radioNames+'" value="large">'+
             'Large'+
           '</label>'+
           '<label for="size">'+
-            '<input type="radio" name="pizzaSize" value="extra large">'+
+            '<input type="radio" name="'+radioNames+'" value="extra large">'+
             'Extra Large'+
           '</label>'+
           '</label>'+
@@ -115,6 +110,7 @@ function addPizza(id){
 
         '</div>');
 }
+
 function Pizza(size){
   this.toppings = [];
   this.size = size;
@@ -134,15 +130,7 @@ Pizza.prototype = {
     }
     return totalPrice;
   },
-  getToppings : function(){
-    if(!classicPizzaDict[this.name]){
-      var toppingAmmount =classicPizzaDict[this.name];//.length;
-      for(var i = 0; i < toppingAmmount.length; i++){
-        var newTopping = new topping(classicPizzaDict[this.name][i])
-        this.toppings.push(newTopping);
-      }
-    }
-  }//,
+
 }
 
 
@@ -155,20 +143,20 @@ $(function(){
   $("form#order").submit(function(event){
     event.preventDefault();
     var orderPrice = 0
-    $(".pizzas").each(function(){
-      var size = $(this).children("div").children("label").children("input[type=radio]:checked").val();
+
+    $(".pizza").each(function(){
+      var size = $(this).children("label").children("input[type=radio]:checked").val();
       var newPizza = new Pizza(size)
 
-      console.log("should be class .pizzas:  " + $(this).attr("class"))
+      console.log("should be size:  " + size)
 
-      $(this).children("div").children("label").children("input[type=checkbox]:checked").each(function(){
-        // var ingredient = $(this).val();
+      $(this).children("label").children("input[type=checkbox]:checked").each(function(){
         var topper = $(this).val();
-        console.log("should be a topping value:  " + $(this).val())
+
         var newTopping = new topping(topper);
         newPizza.toppings.push(newTopping);
       })
-      console.log(newPizza);
+
       orderPrice += newPizza.calculatePrice();
     })
 
