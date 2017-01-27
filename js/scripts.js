@@ -1,5 +1,5 @@
 var toppingDict = {
-  "cheese":1, "pepperoni":1, "pineapple":1, "sausage":1, "Canadian bacon":1.5, "artichoke":1, "onions":1, "green onions":1, "anchovies":1, "bacon":1.5, "chicken":1
+  "cheese":1, "pepperoni":1, "pineapple":1, "sausage":1, "Canadian bacon":1.5, "artichoke":1, "onions":1, "green onions":1, "anchovies":1, "bacon":1.5, "chicken":1, "tomatoes":1, "sun-dried":1
 };
 var classicPizzaDict = {
   "Classic Pepperoni":["cheese","pepperoni"],
@@ -47,10 +47,14 @@ Pizza.prototype = {
 
 
 $(function(){
+  $("label:last-of-type").children("input").click(function(){
+    $(".customOptions").show();
+  })
+
   $("form#order").submit(function(event){
     event.preventDefault();
     var size = $("input[name=pizzaSize]:checked").val();
-    var pizzaName=$("input[name=classicPizza]:checked").val();
+    var pizzaName=$("input[name=pizza]:checked").val();
 
     var newPizza = new Pizza(pizzaName, size)
     newPizza.getToppings();
