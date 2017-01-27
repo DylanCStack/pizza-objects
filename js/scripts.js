@@ -14,9 +14,108 @@ var sizeDict = {
   "large":18,
   "extra large":22
 };
+function addPizza(id){
+  var cheese, pepperoni, hawaiian, veggie, meat;
+  switch (id) {
+    case "addCheese":
+      cheese="checked"
+      break;
+    case "addHawaiian":
+      cheese="checked"
+      hawaiian="checked"
+      break;
+    case "addPepperoni":
+      cheese="checked"
+      pepperoni="checked"
+      break;
+    case "addVegetarian":
+      cheese="checked"
+      veggie="checked"
+      break;
+    case "addMeatlovers":
+      cheese="checked"
+      meat="checked"
+      break;
 
-function Pizza(name, size){
-  this.name=name;
+    default:
+      break;
+
+  }
+  $("#pizzas").append(
+        '<div>'+
+          '<label for="size">'+
+            '<input type="radio" name="pizzaSize" value="small">'+
+            'Small'+
+          '</label>'+
+          '<label for="size">'+
+            '<input type="radio" name="pizzaSize" value="medium">'+
+            'Medium'+
+          '</label>'+
+          '<label for="size">'+
+            '<input type="radio" name="pizzaSize" value="large">'+
+            'Large'+
+          '</label>'+
+          '<label for="size">'+
+            '<input type="radio" name="pizzaSize" value="extra large">'+
+            'Extra Large'+
+          '</label>'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="cheese" '+ cheese + '>'+
+              'Cheese'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="pepperoni" '+ pepperoni +'>'+
+              'Pepperoni'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="cheese" '+ hawaiian +'>'+
+              'Canadian Bacon'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="pineapple" '+ hawaiian +'>'+
+              'Pineapple'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="sausage" '+ meat +'>'+
+              'Sausage'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="chicken" '+ meat +'>'+
+              'Chicken'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="bacon" '+ meat +'>'+
+              'bacon'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="artichoke" '+ veggie +'>'+
+              'Artichoke'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="onions" '+ veggie +'>'+
+              'Onions'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="green onions" '+ veggie +'>'+
+              'Green Onions'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="tomatoes" '+ veggie +'>'+
+              'Tomatoes'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="sun-dried" '+ veggie +'>'+
+              'Sun-Dried Tomatoes'+
+          '</label>'+
+          '<label for="topping">'+
+            '<input type="checkbox" name="topping"'+ 'value="anchovies" >'+
+              'Anchovies'+
+          '</label>'+
+
+        '</div>');
+}
+function Pizza(size){
   this.toppings = [];
   this.size = size;
 }
@@ -48,24 +147,33 @@ Pizza.prototype = {
 
 
 $(function(){
-  $("label:last-of-type").children("input").click(function(){
-    $(".customOptions").show();
+  $(".btn").click(function(){
+    var thisID = $(this).attr("id")
+    addPizza(thisID)
   })
 
   $("form#order").submit(function(event){
     event.preventDefault();
-    var size = $("input[name=pizzaSize]:checked").val();
-    var pizzaName=$("input[name=pizza]:checked").val();
+    var orderPrice = 0
+    $("#pizzas").each(function(){
+      var size = $(this).children("div").children("label").children("input[type=radio]:checked").val();
+      var newPizza = new Pizza(size)
 
-    var newPizza = new Pizza(pizzaName, size)
-    // newPizza.getToppings();
-    $("input[type=checkbox]:checked").each(function(){
-      // var ingredient = $(this).val();
-      var topper = $(this).val();
-      var newTopping = new topping(topper);
-      newPizza.toppings.push(newTopping);
+      $(this).children("div").children("label").children("input[type=checkbox]:checked").each(function(){
+        // var ingredient = $(this).val();
+        var topper = $(this).val();
+        var newTopping = new topping(topper);
+        newPizza.toppings.push(newTopping);
+      })
+      console.log(newPizza);
+      orderPrice +=newPizza.calculatePrice();
     })
-    console.log(newPizza);
-    $("#priceOutput").text(newPizza.calculatePrice());
+
+    //var pizzaName=$("input[name=pizza]:checked").val();
+
+
+    // newPizza.getToppings();
+
+    $("#priceOutput").text("$"+orderPrice);
   })
 })

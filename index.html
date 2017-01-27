@@ -14,104 +14,25 @@
         <p>Online orders are just a click away</p>
       </div>
       <form id="order">
-        <h1>What size pizza would you like to order?</h1>
-
-        <label for="size">
-          <input type="radio" name="pizzaSize" value="small">
-          Small
-        </label>
-        <label for="size">
-          <input type="radio" name="pizzaSize" value="medium" checked>
-          Medium
-        </label>
-        <label for="size">
-          <input type="radio" name="pizzaSize" value="large">
-          Large
-        </label>
-        <label for="size">
-          <input type="radio" name="pizzaSize" value="extra large">
-          Extra Large
-        </label>
 
         <h1>What kind of pizza would you like to order?</h1>
-        <label for="pizza">
-          <input type="radio" name="pizza" value="Classic Cheese">
-          Classic Cheese
-        </label>
-        <label for="pizza">
-          <input type="radio" name="pizza" value="Classic Pepperoni">
-          Classic Pepperoni
-        </label>
-        <label for="pizza">
-          <input type="radio" name="pizza" value="Classic Hawaiian">
-          Classic Hawaiian
-        </label>
-        <label for="pizza">
-          <input type="radio" name="pizza" value="Classic Meatlovers">
-          Classic Meat-lovers
-        </label>
-        <label for="pizza">
-          <input type="radio" name="pizza" value="Classic Vegetarian">
-          Classic Vegetarian
-        </label>
-        <label for="pizza">
-          <input type="radio" name="pizza" value="Custom Pizza" checked>
-            Custom
-        </label>
-          <div class="customOptions">
-            <label for="toppig">
-              <input type="checkbox" name="topping" value="cheese" checked>
-                Cheese
-            </label>
-            <label for="toppig">
-              <input type="checkbox" name="topping" value="pepperoni">
-                Pepperoni
-            </label>
-            <label for="toppig">
-              <input type="checkbox" name="topping" value="Canadian bacon">
-                Canadian Bacon
-            </label>
-            <label for="toppig">
-              <input type="checkbox" name="topping" value="pineapple">
-                Pineapple
-            </label>
-            <label for="toppig">
-              <input type="checkbox" name="topping" value="sausage">
-                Sausage
-            </label>
-            <label for="toppig">
-              <input type="checkbox" name="topping" value="bacon">
-                Bacon
-            </label>
-            <label for="toppig">
-              <input type="checkbox" name="topping" value="chicken">
-                Chicken
-              </label>
-              <label for="toppig">
-                <input type="checkbox" name="topping" value="artichoke">
-                  Artichoke
-              </label>
-              <label for="toppig">
-                <input type="checkbox" name="topping" value="onions">
-                  Onions
-              </label>
-              <label for="toppig">
-                <input type="checkbox" name="topping" value="green onions">
-                  Green Onions
-              </label>
-              <label for="toppig">
-                <input type="checkbox" name="topping" value="tomatoes">
-                  Tomatoes
-              </label>
-              <label for="toppig">
-                <input type="checkbox" name="topping" value="sun-dried">
-                  Sun-dried Tomatoes
-              </label>
-              <label for="toppig">
-                <input type="checkbox" name="topping" value="anchovies">
-                  Anchovies
-              </label>
-          </div>
+        <div class="btn btn-danger" id="addPepperoni">Add Pepperoni
+        </div>
+        <div class="btn btn-warning" id="addCheese">Add Cheese
+        </div>
+        <div class="btn btn-info" id="addHawaiian">Add Hawaiian
+        </div>
+        <div class="btn btn-success" id="addVegetarian">Vegetarian
+        </div>
+        <div class="btn btn-inverse" id="addMeatlovers">Add Meatlovers
+        </div>
+        <div class="btn btn-primary" id="addCustom">Add Custom Pizza
+        </div>
+
+
+        <div id="pizzas">
+        </div>
+
         <br>
         <button class="btn btn-danger" type="submit">Submit</button>
       </form>
