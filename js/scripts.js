@@ -36,13 +36,14 @@ Pizza.prototype = {
     return totalPrice;
   },
   getToppings : function(){
-    var toppingAmmount =classicPizzaDict[this.name].length;
-    for(var i = 0; i < toppingAmmount; i++){
-      var newTopping = new topping(classicPizzaDict[this.name][i])
-      this.toppings.push(newTopping);
+    if(!classicPizzaDict[this.name]){
+      var toppingAmmount =classicPizzaDict[this.name];//.length;
+      for(var i = 0; i < toppingAmmount.length; i++){
+        var newTopping = new topping(classicPizzaDict[this.name][i])
+        this.toppings.push(newTopping);
+      }
     }
-
-  }
+  }//,
 }
 
 
@@ -57,7 +58,13 @@ $(function(){
     var pizzaName=$("input[name=pizza]:checked").val();
 
     var newPizza = new Pizza(pizzaName, size)
-    newPizza.getToppings();
+    // newPizza.getToppings();
+    $("input[type=checkbox]:checked").each(function(){
+      // var ingredient = $(this).val();
+      var topper = $(this).val();
+      var newTopping = new topping(topper);
+      newPizza.toppings.push(newTopping);
+    })
     console.log(newPizza);
     $("#priceOutput").text(newPizza.calculatePrice());
   })
