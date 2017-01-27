@@ -13,11 +13,5 @@ function topping(topper){
   this.price=toppingRepo[topper];
 }
 
-Pizza.prototype = {
-  calculatePrice : function() {
-    var totalPrice = 0;
-    for(var i = 0; i <this.toppings.length; i++){
-      totalPrice += this.toppings[i].price;
-    }
-  }//
+
 }
