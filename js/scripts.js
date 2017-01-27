@@ -8,6 +8,12 @@ var classicPizzaDict = {
   "Classic Vegetarian": ["cheese","artichoke","onions","green onions"],
   "Classic Hawaiian":["cheese", "Canadian bacon", "pineapple"]
 };
+var sizeDict = {
+  "small":12,
+  "medium":16,
+  "large":18,
+  "extra large":22
+};
 
 function Pizza(name, size){
   this.name=name;
@@ -23,7 +29,7 @@ function topping(topper){
 
 Pizza.prototype = {
   calculatePrice : function() {
-    var totalPrice = 0;
+    var totalPrice = sizeDict[this.size];
     for(var i = 0; i <this.toppings.length; i++){
       totalPrice += this.toppings[i].price;
     }
