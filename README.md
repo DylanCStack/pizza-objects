@@ -40,3 +40,6 @@ The two simple ways to access this site and order your own pizza are as follows.
       *Onions: $1.00
     * Price: $18.50
   *Total Price: $35.00**
+
+
+  add output window which will append reciept for pizzas, with remove last pizza option. clicking a pizza will only fill in the checks, save pizza will save it
