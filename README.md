@@ -1,14 +1,14 @@
-#Papa Don's Pizzeria
-###Authored by Dylan Stackhouse, 1-27-17
-##Description:
+# Papa Don's Pizzeria
+### Authored by Dylan Stackhouse, 1-27-17
+## Description:
 A website for Papa Don's Pizzeria from which you may order classic pizzas like pepperoni, Hawaiian, and vegetarian, or you can customize your own pizza to your taste by selecting anything from the wide range of ingredients.
 
-##Setup:
+## Setup:
 The two simple ways to access this site and order your own pizza are as follows.
 1. Download or clone this project's git repository from [github](https://github.com/DylanCStack/pizza-objects.git "But how did you get this far without that?") and open index.html in any web browser(Chrome recommended).
 2. Visit the site's [gh-pages address](DylanCStack.gihub.io/pizza-objects).
 
-##Specifications
+## Specifications
 1. User will be able to select a pizza with predetermined toppings, and a pizza size.
     * **Input: click: classic pepperoni, large**
     * **Output: pepperoni, large options highlighted**
